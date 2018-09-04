@@ -7,4 +7,8 @@ from .models import Environment
 class EnvironmentAdmin(admin.ModelAdmin):
     list_display = (
         'name',
+        'project',
+    )
+    list_filter = (
+        'project',
     )

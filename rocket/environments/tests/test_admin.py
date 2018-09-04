@@ -24,5 +24,12 @@ class EnvironmentAdminTest(TestCase):
     def test_environment_admin_should_set_list_display(self):
         expected = (
             'name',
+            'project',
         )
         self.assertEqual(EnvironmentAdmin.list_display, expected)
+
+    def test_environment_admin_should_set_list_filter(self):
+        expected = (
+            'project',
+        )
+        self.assertEqual(EnvironmentAdmin.list_filter, expected)
