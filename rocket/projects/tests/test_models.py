@@ -1,6 +1,9 @@
 from django.test import TestCase
 
-from ..models import Project, ProjectGroup
+from ..models import (
+    Project,
+    ProjectGroup,
+)
 
 
 class ProjectTest(TestCase):
