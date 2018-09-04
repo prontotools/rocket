@@ -30,3 +30,22 @@ class EnvironmentTest(TestCase):
 
         self.assertEqual(env.name, 'Production')
         self.assertEqual(env.project.id, project.id)
+
+    def test_environment_should_have_friendly_name(self):
+        project_group = ProjectGroup.objects.create(
+            name='Pronto World',
+            slug='pronto-world',
+            description='Pronto World Group'
+        )
+        project = Project.objects.create(
+            name='Pronto World',
+            slug='pronto-world',
+            description='Pronto World Description',
+            project_group=project_group
+        )
+        env = Environment.objects.create(
+            name='Production',
+            project=project
+        )
+
+        self.assertEqual(env.__str__(), 'Pronto World: Production')
