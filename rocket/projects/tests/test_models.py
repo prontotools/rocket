@@ -7,13 +7,14 @@ from ..models import (
 
 
 class ProjectTest(TestCase):
-    def test_save_project(self):
-        project_group = ProjectGroup.objects.create(
+    def setUp(self):
+        self.project_group = ProjectGroup.objects.create(
             name='Pronto World',
             slug='pronto-world',
             description='Pronto World Group'
         )
 
+    def test_save_project(self):
         project = Project()
         project.name = 'Pronto World'
         project.slug = 'pronto-world'
@@ -21,7 +22,7 @@ class ProjectTest(TestCase):
             'clients can sign up for services, monitor website analytics, ' \
             'and manage their account.'
         project.description = description
-        project.project_group = project_group
+        project.project_group = self.project_group
         project.save()
 
         project = Project.objects.last()
@@ -29,21 +30,15 @@ class ProjectTest(TestCase):
         self.assertEqual(project.name, 'Pronto World')
         self.assertEqual(project.slug, 'pronto-world')
         self.assertEqual(project.description, description)
-        self.assertEqual(project.project_group.id, project_group.id)
+        self.assertEqual(project.project_group.id, self.project_group.id)
 
     def test_project_should_have_friendly_name(self):
-        project_group = ProjectGroup.objects.create(
-            name='Pronto World',
-            slug='pronto-world',
-            description='Pronto World Group'
-        )
         project = Project.objects.create(
             name='Pronto World',
             slug='pronto-world',
             description='Pronto World Description',
-            project_group=project_group
+            project_group=self.project_group
         )
-
         self.assertEqual(project.__str__(), 'Pronto World')
 
 
