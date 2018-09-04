@@ -8,6 +8,7 @@ class EnvironmentAdmin(admin.ModelAdmin):
     list_display = (
         'name',
         'project',
+        'branch',
     )
     list_filter = (
         'project',

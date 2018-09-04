@@ -25,12 +25,14 @@ class EnvironmentTest(TestCase):
         env = Environment()
         env.name = 'Production'
         env.project = self.project
+        env.branch = 'develop'
         env.save()
 
         env = Environment.objects.last()
 
         self.assertEqual(env.name, 'Production')
         self.assertEqual(env.project.id, self.project.id)
+        self.assertEqual(env.branch, 'develop')
 
     def test_environment_should_have_friendly_name(self):
         env = Environment.objects.create(

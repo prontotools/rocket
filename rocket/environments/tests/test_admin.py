@@ -25,6 +25,7 @@ class EnvironmentAdminTest(TestCase):
         expected = (
             'name',
             'project',
+            'branch',
         )
         self.assertEqual(EnvironmentAdmin.list_display, expected)
 
