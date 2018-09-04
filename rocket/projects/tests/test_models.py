@@ -31,6 +31,8 @@ class ProjectTest(TestCase):
         self.assertEqual(project.slug, 'pronto-world')
         self.assertEqual(project.description, description)
         self.assertEqual(project.project_group.id, self.project_group.id)
+        self.assertTrue(project.token)
+        self.assertEqual(len(project.token), 32)
 
     def test_project_should_have_friendly_name(self):
         project = Project.objects.create(

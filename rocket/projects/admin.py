@@ -13,6 +13,7 @@ class ProjectAdmin(admin.ModelAdmin):
         'slug',
         'description',
         'project_group',
+        'token',
     )
     list_filter = (
         'project_group',

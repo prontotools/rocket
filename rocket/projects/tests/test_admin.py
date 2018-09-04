@@ -30,6 +30,7 @@ class ProjectAdminTest(TestCase):
             'slug',
             'description',
             'project_group',
+            'token',
         )
         self.assertEqual(ProjectAdmin.list_display, expected)
 
