@@ -13,3 +13,4 @@ django = "*"
 [dev-packages]
 
 "flake8" = "*"
+pytest-django = "*"
