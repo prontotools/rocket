@@ -37,7 +37,7 @@ class ProjectGroupTest(TestCase):
         project_group.description = 'Pronto World Group'
         project_group.save()
 
-        project = Project.objects.last()
+        project_group = ProjectGroup.objects.last()
 
         self.assertEqual(project_group.name, 'Pronto World')
         self.assertEqual(project_group.slug, 'pronto-world')
