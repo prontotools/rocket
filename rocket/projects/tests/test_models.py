@@ -31,6 +31,21 @@ class ProjectTest(TestCase):
         self.assertEqual(project.description, description)
         self.assertEqual(project.project_group.id, project_group.id)
 
+    def test_project_should_have_friendly_name(self):
+        project_group = ProjectGroup.objects.create(
+            name='Pronto World',
+            slug='pronto-world',
+            description='Pronto World Group'
+        )
+        project = Project.objects.create(
+            name='Pronto World',
+            slug='pronto-world',
+            description='Pronto World Description',
+            project_group=project_group
+        )
+
+        self.assertEqual(project.__str__(), 'Pronto World')
+
 
 class ProjectGroupTest(TestCase):
     def test_save_project_group(self):
