@@ -1,28 +1,22 @@
-from django.contrib.auth.models import User
+from django.contrib import admin
 from django.test import TestCase
 
 from ..admin import (
     ProjectAdmin,
     ProjectGroupAdmin,
 )
+from ..models import (
+    Project,
+    ProjectGroup,
+)
 
 
 class ProjectAdminTest(TestCase):
-    def setUp(self):
-        User.objects.create_superuser(
-            username='admin',
-            password='123',
-            email=''
+    def test_project_admin_should_be_registered(self):
+        self.assertIsInstance(
+            admin.site._registry[Project],
+            ProjectAdmin
         )
-        self.client.login(
-            username='admin',
-            password='123'
-        )
-        self.url = '/admin/projects/project/'
-
-    def test_access_project_admin_page(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
 
     def test_project_admin_should_set_list_display(self):
         expected = (
@@ -42,21 +36,11 @@ class ProjectAdminTest(TestCase):
 
 
 class ProjectGroupAdminTest(TestCase):
-    def setUp(self):
-        User.objects.create_superuser(
-            username='admin',
-            password='123',
-            email=''
+    def test_project_group_admin_should_be_registered(self):
+        self.assertIsInstance(
+            admin.site._registry[ProjectGroup],
+            ProjectGroupAdmin
         )
-        self.client.login(
-            username='admin',
-            password='123'
-        )
-        self.url = '/admin/projects/projectgroup/'
-
-    def test_access_project_group_admin_page(self):
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
 
     def test_project_group_admin_should_set_list_display(self):
         expected = (
